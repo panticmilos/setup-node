@@ -8,7 +8,7 @@ inputs:
   node-version:
     description: 'Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0'
   node-version-file:
-    description: 'File containing the version Spec of the version to use.  Examples: .nvmrc, .node-version'
+    description: 'File containing the version Spec of the version to use.  Examples: .nvmrc,. node-version'
   architecture:
     description: 'Target architecture for Node to use. Examples: x86, x64. Will use system architecture by default.'
   check-latest:
@@ -27,9 +27,15 @@ inputs:
     description: 'Used to specify the path to a dependency file: package-lock.json, yarn.lock, etc. Supports wildcards or a list of file names for caching multiple dependencies.'
 # TODO: add input to control forcing to pull from cloud or dist. 
 #       escape valve for someone having issues or needing the absolute latest which isn't cached yet
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
 outputs:
   cache-hit: 
     description: 'A boolean value to indicate if a cache was hit'
+  time: # id of output
+    description: 'The time we greeted you'
 runs:
   using: 'node16'
   main: 'dist/setup/index.js'
