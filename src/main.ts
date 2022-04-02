@@ -25,6 +25,7 @@ export async function run() {
 
     const time = (new Date()).toTimeString();
     core.setOutput("time", "30");
+    console.log("test");
 
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`The event payload: ${payload}`);
