@@ -6587,6 +6587,7 @@ const path = __importStar(__webpack_require__(622));
 const cache_restore_1 = __webpack_require__(409);
 const cache_utils_1 = __webpack_require__(570);
 const os = __webpack_require__(87);
+const github_1 = __importDefault(__webpack_require__(469));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -6597,6 +6598,12 @@ function run() {
             let version = resolveVersionInput();
             let arch = core.getInput('architecture');
             const cache = core.getInput('cache');
+            const nameToGreet = core.getInput('who-to-greet');
+            console.log(`Hello ${nameToGreet}!`);
+            const time = (new Date()).toTimeString();
+            core.setOutput("time", "30");
+            const payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
+            console.log(`The event payload: ${payload}`);
             // if architecture supplied but node-version is not
             // if we don't throw a warning, the already installed x64 node will be used which is not probably what user meant.
             if (arch && !version) {
