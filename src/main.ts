@@ -19,10 +19,6 @@ export async function run() {
 
     let arch = core.getInput('architecture');
     const cache = core.getInput('cache');
-
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
-
     // if architecture supplied but node-version is not
     // if we don't throw a warning, the already installed x64 node will be used which is not probably what user meant.
     if (arch && !version) {
