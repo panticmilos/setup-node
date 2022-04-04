@@ -20,13 +20,6 @@ export async function run() {
     let arch = core.getInput('architecture');
     const cache = core.getInput('cache');
 
-    const nameToGreet = core.getInput('who-to-greet');
-    console.log(`Hello ${nameToGreet}!`);
-
-    const time = (new Date()).toTimeString();
-    core.setOutput("time", "30");
-    console.log("test");
-
     const payload = JSON.stringify(github.context.payload, undefined, 2)
     console.log(`The event payload: ${payload}`);
 
