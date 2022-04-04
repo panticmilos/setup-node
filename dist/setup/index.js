@@ -61233,7 +61233,6 @@ function getNode(versionSpec, stable, checkLatest, auth, arch = os.arch()) {
                 if (info) {
                     core.info(`Acquiring ${info.resolvedVersion} - ${info.arch} from ${info.downloadUrl}`);
                     downloadPath = yield tc.downloadTool(info.downloadUrl, undefined, auth);
-                    console.log("here bro 2");
                 }
                 else {
                     core.info('Not found in manifest.  Falling back to download directly from Node');
@@ -61318,7 +61317,9 @@ function isLtsAlias(versionSpec) {
 }
 function getManifest(auth) {
     core.debug('Getting manifest from actions/node-versions@main');
-    return tc.getManifestFromRepo('actions', 'node-versions', auth, 'main');
+    let res = tc.getManifestFromRepo('actions', 'node-versions', auth, 'main');
+    console.log(res, "LOOK HERE");
+    return res;
 }
 function resolveLtsAliasFromManifest(versionSpec, stable, manifest) {
     var _a;
