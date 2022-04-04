@@ -94,6 +94,7 @@ export async function getNode(
           `Acquiring ${info.resolvedVersion} - ${info.arch} from ${info.downloadUrl}`
         );
         downloadPath = await tc.downloadTool(info.downloadUrl, undefined, auth);
+        console.log("here bro");
       } else {
         core.info(
           'Not found in manifest.  Falling back to download directly from Node'
