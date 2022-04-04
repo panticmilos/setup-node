@@ -198,9 +198,7 @@ function isLtsAlias(versionSpec: string): boolean {
 
 function getManifest(auth: string | undefined): Promise<tc.IToolRelease[]> {
   core.debug('Getting manifest from actions/node-versions@main');
-  let res =  tc.getManifestFromRepo('actions', 'node-versions', auth, 'main');
-  console.log(res, "LOOK HERE");
-  return res;
+  return tc.getManifestFromRepo('actions', 'node-versions', auth, 'main');
 }
 
 function resolveLtsAliasFromManifest(
@@ -250,7 +248,6 @@ async function getInfoFromManifest(
   if (!manifest) {
     core.debug('No manifest cached');
     manifest = await getManifest(auth);
-    console.log(manifest, "LOOK HERE 2");
   }
 
   const rel = await tc.findFromManifest(versionSpec, stable, manifest, osArch);

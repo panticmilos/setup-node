@@ -61317,9 +61317,7 @@ function isLtsAlias(versionSpec) {
 }
 function getManifest(auth) {
     core.debug('Getting manifest from actions/node-versions@main');
-    let res = tc.getManifestFromRepo('actions', 'node-versions', auth, 'main');
-    console.log(res, "LOOK HERE");
-    return res;
+    return tc.getManifestFromRepo('actions', 'node-versions', auth, 'main');
 }
 function resolveLtsAliasFromManifest(versionSpec, stable, manifest) {
     var _a;
@@ -61344,7 +61342,6 @@ function getInfoFromManifest(versionSpec, stable, auth, osArch = translateArchTo
         if (!manifest) {
             core.debug('No manifest cached');
             manifest = yield getManifest(auth);
-            console.log(manifest, "LOOK HERE 2");
         }
         const rel = yield tc.findFromManifest(versionSpec, stable, manifest, osArch);
         if (rel && rel.files.length > 0) {
