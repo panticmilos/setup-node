@@ -61344,6 +61344,7 @@ function getInfoFromManifest(versionSpec, stable, auth, osArch = translateArchTo
         if (!manifest) {
             core.debug('No manifest cached');
             manifest = yield getManifest(auth);
+            console.log(manifest, "LOOK HERE 2");
         }
         const rel = yield tc.findFromManifest(versionSpec, stable, manifest, osArch);
         if (rel && rel.files.length > 0) {
