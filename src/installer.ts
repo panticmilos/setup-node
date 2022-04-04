@@ -250,6 +250,7 @@ async function getInfoFromManifest(
   if (!manifest) {
     core.debug('No manifest cached');
     manifest = await getManifest(auth);
+    console.log(manifest, "LOOK HERE 2");
   }
 
   const rel = await tc.findFromManifest(versionSpec, stable, manifest, osArch);
