@@ -95,7 +95,6 @@ export async function getNode(
         );
         downloadPath = await tc.downloadTool(info.downloadUrl, undefined, auth);
         console.log("here bro 2");
-        console.log("here bro 3");
       } else {
         core.info(
           'Not found in manifest.  Falling back to download directly from Node'
