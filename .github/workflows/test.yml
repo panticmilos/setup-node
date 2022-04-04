@@ -18,7 +18,7 @@ jobs:
           echo "RUNNER_TOOL_CACHE=$RUNNER_TOOL_CACHE"
           ls "$RUNNER_TOOL_CACHE/node"
           curl https://api.github.com/rate_limit -u "token:$TOKEN"
-      - uses: panticmilos/setup-node@latest
+      - uses: panticmilos/setup-node@3.1
         with:
           node-version: ^16.13.2
       - name: Check
@@ -30,7 +30,7 @@ jobs:
           echo "RUNNER_TOOL_CACHE=$RUNNER_TOOL_CACHE"
           ls "$RUNNER_TOOL_CACHE/node"
           curl https://api.github.com/rate_limit -u "token:$TOKEN"
-      - uses: panticmilos/setup-node@latest
+      - uses: panticmilos/setup-node@3.1
         with:
           node-version: 16.13.2
       - name: Check
