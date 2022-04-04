@@ -6598,10 +6598,6 @@ function run() {
             let version = resolveVersionInput();
             let arch = core.getInput('architecture');
             const cache = core.getInput('cache');
-            const nameToGreet = core.getInput('who-to-greet');
-            console.log(`Hello ${nameToGreet}!`);
-            const time = (new Date()).toTimeString();
-            core.setOutput("time", "30");
             const payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
             console.log(`The event payload: ${payload}`);
             // if architecture supplied but node-version is not
@@ -61240,6 +61236,7 @@ function getNode(versionSpec, stable, checkLatest, auth, arch = os.arch()) {
                 if (info) {
                     core.info(`Acquiring ${info.resolvedVersion} - ${info.arch} from ${info.downloadUrl}`);
                     downloadPath = yield tc.downloadTool(info.downloadUrl, undefined, auth);
+                    console.log("here bro 2");
                 }
                 else {
                     core.info('Not found in manifest.  Falling back to download directly from Node');
