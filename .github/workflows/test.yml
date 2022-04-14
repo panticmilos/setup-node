@@ -13,8 +13,8 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [current, latest, node]
     steps:
-      - uses: panticmilos/setup-node@main
       - name: Setup Node
+        uses: panticmilos/setup-node@main
         with:
           node-version: ${{ matrix.node-version }}
       - name: Verify node and npm
