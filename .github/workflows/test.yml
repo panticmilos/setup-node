@@ -18,7 +18,7 @@ jobs:
           version=$(echo $(node --version))
           version="${version:1}"
           echo "::set-output name=NODE_VERSION::$version"
-          echo "$NODE_VERSION"
+          echo '::echo::on'
         id: version
         shell: bash
       - uses: actions/checkout@v3
@@ -28,10 +28,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Retrieve version after install
         run: |
-          updatedVersion=$(echo $(node --version))
-          updatedVersion="${version:1}"
-          echo "::set-output name=NODE_VERSION_UPDATED::$updatedVersion"
-          echo "$NODE_VERSION_UPDATED"
+          echo "::set-output name=NODE_VERSION_UPDATED::$(echo $(node --version))"
+          echo '::echo::on'
         id: updatedVersion
         shell: bash
       - name: Compare versions
