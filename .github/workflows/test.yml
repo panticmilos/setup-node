@@ -24,12 +24,7 @@ jobs:
         uses: panticmilos/setup-node@main
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Retrieve version after install
-        run: |
-          echo "::set-output name=NODE_VERSION_UPDATED::$(echo $(node --version))"
-        id: updatedVersion
-        shell: bash
       - name: Compare versions
-        if: ${{ steps.version.outputs.NODE_VERSION ==  steps.updatedVersion.outputs.NODE_VERSION_UPDATED}}
+        if: ${{ steps.version.outputs.NODE_VERSION ==  $(echo $(node --version))}}
         run: |
           exit 1
