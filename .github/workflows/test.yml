@@ -18,6 +18,7 @@ jobs:
           version=$(echo $(node --version))
           version="${version:1}"
           echo "::set-output name=NODE-VERSION::$version"
+          echo "$NODE-VERSION"
         id: version
         shell: bash
       - uses: actions/checkout@v3
@@ -30,8 +31,9 @@ jobs:
           updatedVersion=$(echo $(node --version))
           updatedVersion="${version:1}"
           echo "::set-output name=NODE-VERSION-UPDATED::$updatedVersion"
+          echo "$NODE-VERSION-UPDATED"
         id: updatedVersion
         shell: bash
       - name: Compare versions
-        if: ${{ steps.version.outputs.NODE-VERSION ==  steps.version.outputs.NODE-VERSION-UPDATED}}
+        if: ${{ steps.version.outputs.NODE-VERSION !=  steps.version.outputs.NODE-VERSION-UPDATED}}
         run: exit 1
