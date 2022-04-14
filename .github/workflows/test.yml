@@ -24,6 +24,7 @@ jobs:
           version="${version:1}"
           echo "::set-output name=NODE-VERSION::$version"
         id: version
+        shell: bash
       - name: Verify node and npm
         run: __tests__/verify-node.sh "${{ steps.version.outputs.NODE-VERSION }}"
         shell: bash
