@@ -13,6 +13,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [current, latest, node]
     steps:
+      - uses: actions/checkout@v3
       - name: Setup Node
         uses: panticmilos/setup-node@main
         with:
