@@ -7,6 +7,7 @@ fi
 
 node_version="$(node --version)"
 echo "Found node version '$node_version'"
+echo "Found node version '$1'"
 if [ -z "$(echo $node_version | grep --fixed-strings v$1)" ]; then
   echo "Unexpected version"
   exit 1

@@ -20,7 +20,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Retrieve version
         run: |
-          echo "::set-output name=NODE-VERSION::$(node --version)"
+          version=$(echo $(node --version))
+          version="${version:1}"
+          echo "::set-output name=NODE-VERSION::$version"
         id: version
       - name: Verify node and npm
         run: __tests__/verify-node.sh "${{ steps.version.outputs.NODE-VERSION }}"
