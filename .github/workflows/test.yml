@@ -30,7 +30,7 @@ jobs:
           updatedVersion=$(echo $(node --version))
           updatedVersion="${version:1}"
           echo "::set-output name=NODE-VERSION-UPDATED::$updatedVersion"
-        id: version
+        id: updatedVersion
         shell: bash
       - name: Compare versions
         if: ${{ steps.version.outputs.NODE-VERSION ==  steps.version.outputs.NODE-VERSION-UPDATED}}
