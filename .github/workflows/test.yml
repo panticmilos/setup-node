@@ -25,6 +25,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Compare versions
-        if: ${{ steps.version.outputs.NODE_VERSION ==  echo $(node --version)}}
+        if: ${{ steps.version.outputs.NODE_VERSION ==  $(node --version)}}
         run: |
           exit 1
