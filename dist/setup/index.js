@@ -61439,6 +61439,9 @@ function queryDistForMatch(versionSpec, arch = os.arch()) {
         }
         let versions = [];
         let nodeVersions = yield getVersionsFromDist();
+        if (versionSpec === 'current' || versionSpec === 'latest' || versionSpec === 'node') {
+            return nodeVersions[0].version;
+        }
         nodeVersions.forEach((nodeVersion) => {
             // ensure this version supports your os and platform
             if (nodeVersion.files.indexOf(dataFileName) >= 0) {
