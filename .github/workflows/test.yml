@@ -13,18 +13,25 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [current, latest, node]
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Node
-        uses: panticmilos/setup-node@main
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: Retrieve version
+      - name: Retrieve version before install
         run: |
           version=$(echo $(node --version))
           version="${version:1}"
           echo "::set-output name=NODE-VERSION::$version"
         id: version
         shell: bash
-      - name: Verify node and npm
-        run: __tests__/verify-node.sh "${{ steps.version.outputs.NODE-VERSION }}"
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: panticmilos/setup-node@main
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Retrieve version after install
+        run: |
+          updatedVersion=$(echo $(node --version))
+          updatedVersion="${version:1}"
+          echo "::set-output name=NODE-VERSION-UPDATED::$updatedVersion"
+        id: version
         shell: bash
+      - name: Compare versions
+        if: ${{ steps.version.outputs.NODE-VERSION ==  steps.version.outputs.NODE-VERSION-UPDATED}
+        run: exit 1
