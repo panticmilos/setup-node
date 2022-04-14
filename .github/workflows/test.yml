@@ -33,5 +33,5 @@ jobs:
         id: version
         shell: bash
       - name: Compare versions
-        if: ${{ steps.version.outputs.NODE-VERSION ==  steps.version.outputs.NODE-VERSION-UPDATED}
+        if: ${{ steps.version.outputs.NODE-VERSION ==  steps.version.outputs.NODE-VERSION-UPDATED}}
         run: exit 1
