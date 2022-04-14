@@ -18,6 +18,10 @@ jobs:
         uses: panticmilos/setup-node@main
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Retrieve version
+        run: |
+          echo "::set-output name=NODE-VERSION::$(node --version)"
+        id: version
       - name: Verify node and npm
-        run: __tests__/verify-node.sh "${{ matrix.node-version }}"
+        run: __tests__/verify-node.sh "${{ steps.version.outputs.NODE-VERSION }}"
         shell: bash
