@@ -25,6 +25,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Compare versions
-        if: steps.version.outputs.NODE_VERSION ==  $(node --version)
+        if: steps.version.outputs.NODE_VERSION ==  {{$(echo $(node --version))}}
         run: |
           exit 1
+
+# While we agree that this is the common use case, from our standpoint, we believe that is clear that adding npm lint command to the job with the predefined matrix strategy would cause this command to run for every node version in the matrix. We can understand your confusion, but adding every scenario to the README would make it unnecessarily long. 
