@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [current, latest, node, "16.14.2"]
+        node-version: [current, latest, node]
     steps:
       - name: Retrieve version before install
         run: |
@@ -24,9 +24,12 @@ jobs:
         uses: panticmilos/setup-node@main
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Compare versions
-        if: steps.version.outputs.NODE_VERSION ==  {{$(echo $(node --version))}}
+      - name: Retrieve version after install
         run: |
-          exit 1
-
-# While we agree that this is the common use case, from our standpoint, we believe that is clear that adding npm lint command to the job with the predefined matrix strategy would cause this command to run for every node version in the matrix. We can understand your confusion, but adding every scenario to the README would make it unnecessarily long. 
+          updatedVersion=$(echo $(node --version))
+          echo "::set-output name=NODE_VERSION_UPDATED::$updatedVersion"
+        id: updatedVersion
+        shell: bash
+      - name: Compare versions
+        if: ${{ steps.version.outputs.NODE_VERSION ==  steps.version.outputs.NODE_VERSION_UPDATED}}
+        run: exit 1
